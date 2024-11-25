@@ -1,0 +1,11 @@
+@mixin square() {
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+@mixin block() {
+  display: flex;
+  width: 140px;
+  height: 40px;
+}

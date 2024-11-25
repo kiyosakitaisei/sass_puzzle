@@ -1,0 +1,94 @@
+@use 'variable';
+@use 'mixin';
+
+@for $i from 1 through 8 {
+  .w#{$i * 50} {
+    width: #{$i * 50}px;
+  }
+}
+
+@for $i from 1 through 5 {
+  .h#{$i * 50} {
+    height: #{$i * 50}px;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header {
+  background-color: variable.$navy;
+
+  &__box {
+    display: flex;
+    justify-content: flex-end;
+
+    &__list {
+    display: flex;
+    margin: 20px;
+    padding: 10px 0 10px 10px;
+    background-color: variable.$white;
+
+      &__square {
+        @include mixin.square;
+        @each $square in variable.$classNames {
+          $index_key: index(variable.$classNames, $square);
+          // @debug $square;
+          // @debug $index_key;
+
+          &.#{$square} {
+            background-color: nth(variable.$buttonColor, $index_key);
+          }
+        }
+        &:nth-child(n + 1) {
+        margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.section {
+  display: flex;
+
+  &__sidebar {
+    background-color: variable.$green;
+  }
+
+  &__main {
+    background-color: variable.$red;
+
+    &__box {
+      margin: 40px;
+
+      &__list {
+        background-color: variable.$white;
+        width: 140px;
+        height: 40px;
+        padding: 5px;
+
+        &:nth-child(n + 1) {
+          margin-top: 10px;
+        }
+
+        &__block {
+          @include mixin.block;
+          @each $block in variable.$classNames {
+            $index_key: index(variable.$classNames, $block);
+
+            &.#{$block} {
+              background-color: nth(variable.$buttonColor, $index_key);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: variable.$brown;
+}
